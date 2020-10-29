@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body{
+            height:3000px;
+        }
+        #showFont{
+            font-size: 200px;
+            text-align: center;
+            position: fixed;
+            top:0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: #66afe9;
+        }
+        .innerFont{
+            position: absolute;
+            top: 50%;
+            left:50%;
+            margin-left: -100px;
+            margin-top: -120px;
+        }
+    </style>
+</head>
+<body>
+    <div id="showFont">
+        <div class="innerFont">你</div>
+    </div>
+<script>
+    $(document).ready(function(){//在文档加载完毕后执行
+
+        function randomColor() {
+            var color = "";
+            for (var i = 0; i < 6; i++) {
+                color += (Math.random() * 16 | 0).toString(16);
+            }
+            return "#" + color;
+        }
+        $(window).scroll(function(){//开始监听滚动条
+
+//获取当前滚动条高度
+            var _color1 = randomColor();
+            var _color2 = randomColor();
+            var topp = $(document).scrollTop();
+//用于调试 弹出当前滚动条高度
+            if(topp <500){
+                $(".innerFont").text('你')
+            }else if(topp>=500&&topp<=1000){
+                $(".innerFont").text('划');
+            }else if(topp>=1000&&topp<=1500){
+                $(".innerFont").text('个');
+            }else if(topp>=1500){
+                $(".innerFont").text('屁');
+            }
+            $(".innerFont").css('color',_color1);
+            $("#showFont").css('background-color',_color2);
+        })
+
+    })
+</script>
+</body>
+</html>
